@@ -1,4 +1,4 @@
-import { Connection, type PublicKey, clusterApiUrl } from "@solana/web3.js";
+import { Connection, clusterApiUrl, type PublicKey } from "@solana/web3.js";
 
 export const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 
@@ -13,7 +13,3 @@ export function getTransactionSignatures(
 ) {
   return connection.getSignaturesForAddress(publicKey, { limit, before });
 }
-
-// export function getTransactions() {
-//   return connection.getTransactions()
-// }

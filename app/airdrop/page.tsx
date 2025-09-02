@@ -27,7 +27,7 @@ interface IAirdropForm {
   amount: string;
 }
 
-export default function Home() {
+export default function Airdrop() {
   const form = useForm<IAirdropForm>({
     defaultValues: {
       address: "",

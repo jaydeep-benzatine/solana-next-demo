@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
+  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -35,39 +36,38 @@ export default function Transactions() {
               <TableHead className="text-white">Slot</TableHead>
             </TableRow>
           </TableHeader>
+          {!transactions ? <TableCaption>No Data Found</TableCaption> : null}
           <TableBody>
-            {transactions ? (
-              transactions.map((txn) => (
-                <TableRow
-                  key={txn.blockTime}
-                  className="cursor-pointer"
-                  onClick={(_) =>
-                    window.open(
-                      `https://explorer.solana.com/tx/${txn.signature}?cluster=devnet`,
-                      "_blank",
-                    )
-                  }
-                >
-                  <TableCell>
-                    {txn.blockTime
-                      ? new Date(txn.blockTime * 1000).toISOString()
-                      : txn.blockTime}
-                  </TableCell>
-                  <TableCell>{txn.signature}</TableCell>
-                  <TableCell className="flex justify-center">
-                    <Badge
-                      variant="default"
-                      className="bg-green-600 text-white font-bold"
-                    >
-                      {txn.confirmationStatus}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>{txn.slot}</TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <p>No Data Found</p>
-            )}
+            {transactions
+              ? transactions.map((txn) => (
+                  <TableRow
+                    key={txn.blockTime}
+                    className="cursor-pointer"
+                    onClick={(_) =>
+                      window.open(
+                        `https://explorer.solana.com/tx/${txn.signature}?cluster=devnet`,
+                        "_blank",
+                      )
+                    }
+                  >
+                    <TableCell>
+                      {txn.blockTime
+                        ? new Date(txn.blockTime * 1000).toISOString()
+                        : txn.blockTime}
+                    </TableCell>
+                    <TableCell>{txn.signature}</TableCell>
+                    <TableCell className="flex justify-center">
+                      <Badge
+                        variant="default"
+                        className="bg-green-600 text-white font-bold"
+                      >
+                        {txn.confirmationStatus}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>{txn.slot}</TableCell>
+                  </TableRow>
+                ))
+              : null}
           </TableBody>
         </Table>
       </div>
