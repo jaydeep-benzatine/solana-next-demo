@@ -1,9 +1,9 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import Link from "next/link";
+import { useActiveLink } from "@/hooks/use-active-link";
 import { useWalletBalance } from "@/hooks/use-wallet-balance";
 import { balanceInSol, cn } from "@/lib/utils";
 import WalletMultiButtonDynamic from "./wallet-multi-button-dynamic";
-import { useActiveLink } from "@/hooks/use-active-link";
 
 export default function Navbar() {
   const { publicKey } = useWallet();
